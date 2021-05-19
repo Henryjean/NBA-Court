@@ -36,11 +36,6 @@ foul_circle = circle_points(center = c(0, key_height), radius = inner_key_width 
 foul_circle_top = filter(foul_circle, y > key_height) %>% mutate(desc = "foul_circle_top")
 foul_circle_bottom = filter(foul_circle, y < key_height) %>% mutate(desc = "foul_circle_bottom")
 
-# define halfcourt circle
-half_circle = circle_points(center = c(0, height), radius = inner_key_width / 2)
-half_circle_top = filter(half_circle, y > height) %>% mutate(desc = "half_circle_top")
-half_circle_bottom = filter(half_circle, y < height) %>% mutate(desc = "half_circle_bottom")
-
 # define hoop
 hoop = circle_points(center = c(0, hoop_center_y), radius = hoop_radius) %>% mutate(desc = "hoop") 
 restricted = circle_points(center = c(0, hoop_center_y), radius = 4) %>%
@@ -55,5 +50,5 @@ three_point_line = data.frame(
   desc = "three_point_line"
 )
 
-court_points = rbind(court_points , foul_circle_top, foul_circle_bottom, hoop, restricted, three_point_line, half_circle_top, half_circle_bottom)
+court_points = rbind(court_points , foul_circle_top, foul_circle_bottom, hoop, restricted, three_point_line)
 court_points = mutate(court_points , dash = (desc == "foul_circle_bottom"))
